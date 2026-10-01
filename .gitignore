@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+data/
+.pytest_cache/
+.superpowers/
+
+slides/qa/
+slides/workspace-state.json
+
+!data/README.md
+!data/DATA_DICTIONARY.md
