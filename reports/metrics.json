@@ -1,0 +1,116 @@
+{
+  "baseline": {
+    "val_acc": 0.5727,
+    "val_f1": 0.7283,
+    "val_auc": 0.5
+  },
+  "depth1": {
+    "val_acc": 0.9177,
+    "val_f1": 0.9289,
+    "val_auc": 0.9141
+  },
+  "depth_curve": [
+    {
+      "max_depth": 1,
+      "val_acc": 0.9177,
+      "val_f1": 0.9289,
+      "val_auc": 0.9141
+    },
+    {
+      "max_depth": 2,
+      "val_acc": 0.9177,
+      "val_f1": 0.9289,
+      "val_auc": 0.936
+    },
+    {
+      "max_depth": 3,
+      "val_acc": 0.9177,
+      "val_f1": 0.9287,
+      "val_auc": 0.9664
+    },
+    {
+      "max_depth": 4,
+      "val_acc": 0.9142,
+      "val_f1": 0.9259,
+      "val_auc": 0.9619
+    },
+    {
+      "max_depth": 5,
+      "val_acc": 0.8984,
+      "val_f1": 0.911,
+      "val_auc": 0.9588
+    },
+    {
+      "max_depth": 6,
+      "val_acc": 0.9037,
+      "val_f1": 0.9168,
+      "val_auc": 0.9507
+    },
+    {
+      "max_depth": 7,
+      "val_acc": 0.9002,
+      "val_f1": 0.9138,
+      "val_auc": 0.9399
+    },
+    {
+      "max_depth": 8,
+      "val_acc": 0.8984,
+      "val_f1": 0.9129,
+      "val_auc": 0.9241
+    },
+    {
+      "max_depth": 9,
+      "val_acc": 0.9019,
+      "val_f1": 0.9162,
+      "val_auc": 0.9218
+    },
+    {
+      "max_depth": 10,
+      "val_acc": 0.8914,
+      "val_f1": 0.9066,
+      "val_auc": 0.9076
+    },
+    {
+      "max_depth": 11,
+      "val_acc": 0.8984,
+      "val_f1": 0.9132,
+      "val_auc": 0.9117
+    },
+    {
+      "max_depth": 12,
+      "val_acc": 0.8949,
+      "val_f1": 0.9099,
+      "val_auc": 0.9007
+    },
+    {
+      "max_depth": null,
+      "val_acc": 0.8739,
+      "val_f1": 0.8916,
+      "val_auc": 0.8686
+    }
+  ],
+  "ccp_best": 0.008791176372110528,
+  "tree": {
+    "val_acc": 0.9177,
+    "val_f1": 0.9289,
+    "val_auc": 0.9236,
+    "ccp_alpha": 0.008791176372110528,
+    "n_leaves": 3
+  },
+  "forest": {
+    "val_acc": 0.9247,
+    "val_f1": 0.9355,
+    "val_auc": 0.9694,
+    "train_seconds": 0.3
+  },
+  "winner": "forest",
+  "importance": {
+    "Area": 16.75,
+    "Perimeter": 23.13,
+    "MajorAxis": 30.55,
+    "MinorAxis": 4.04,
+    "Eccentricity": 7.58,
+    "ConvexArea": 14.7,
+    "Extent": 3.25
+  }
+}
