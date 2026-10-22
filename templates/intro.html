@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Giới thiệu (Intro) — Phân loại gạo{% endblock %}
+{% block content %}
+<div class="hero">
+  <div class="stat"><p class="n">3.810 mẫu</p><p class="l">Dữ liệu UCI Rice thật (Real data)</p></div>
+  <div class="stat"><p class="n">91,78%</p><p class="l">Độ chính xác kiểm thử (Test accuracy)</p></div>
+  <div class="stat"><p class="n">97,69%</p><p class="l">ROC-AUC kiểm thử (Test ROC-AUC)</p></div>
+</div>
+<div class="card">
+<h1>Máy sàng lọc sơ bộ 2 giống gạo (Rice pre-screening)</h1>
+<p>Mục tiêu (Objective): phân loại 1 hạt gạo thành <b>Cammeo</b> hoặc <b>Osmancik</b>
+từ 7 đặc trưng hình học (geometric features) trích xuất từ ảnh.</p>
+<h2>Phạm vi (Scope)</h2>
+<ul>
+  <li>Đầu vào (Input): Area (Diện tích), Perimeter (Chu vi), MajorAxis (Trục dài),
+      MinorAxis (Trục ngắn), Eccentricity (Độ lệch tâm), ConvexArea (Diện tích lồi), Extent (Độ đầy).</li>
+  <li>Đầu ra (Output): giống gạo + xác suất (probability) + quy tắc cây (decision path).</li>
+  <li>Mô hình (Model): Rừng ngẫu nhiên (Random Forest), 200 cây, seed = 42.</li>
+</ul>
+<h2>Giới hạn (Limitations)</h2>
+<ul>
+  <li>Không thay thế kiểm nghiệm giống/chất lượng chính thức.</li>
+  <li>Đầu vào phải cùng quy trình trích xuất ảnh với dữ liệu huấn luyện; giá trị ngoài miền
+      huấn luyện sẽ bị cảnh báo ngoài miền (out-of-domain).</li>
+  <li>Xác suất gần 0,5 nghĩa là mô hình không chắc chắn (uncertain).</li>
+</ul>
+</div>
+{% endblock %}

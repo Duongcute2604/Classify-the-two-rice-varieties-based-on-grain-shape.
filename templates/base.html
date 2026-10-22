@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><title>{% block title %}Phân loại gạo{% endblock %}</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<header class="topbar"><p class="brand">Phân loại gạo <span>Cammeo &amp; Osmancik (Rice classifier)</span></p></header>
+<nav class="tabs">
+  <a href="/">Giới thiệu (Intro)</a>
+  <a href="/classify">Phân loại (Classify)</a>
+  <a href="/dashboard">Đánh giá &amp; Model card (Dashboard)</a>
+</nav>
+<div class="wrap">
+{% block content %}{% endblock %}
+</div>
+</body>
+</html>
