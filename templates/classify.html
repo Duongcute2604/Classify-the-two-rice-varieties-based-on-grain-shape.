@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Phân loại (Classify){% endblock %}
+{% block content %}
+<div class="card">
+<h1>Phân loại 1 hạt gạo (Classify one grain)</h1>
+<form id="single" onsubmit="return predict(event)">
+  {% for f in fields %}
+  <label class="field">{{ f.col }} ({{ f.vi }}):
+    <input type="range" id="r_{{ f.key }}" min="{{ f.min }}" max="{{ f.max }}" step="any" value="{{ f.val }}"
+           oninput="document.getElementById('n_{{ f.key }}').value=this.value">
+    <input type="number" id="n_{{ f.key }}" step="any" value="{{ f.val }}"
+           oninput="document.getElementById('r_{{ f.key }}').value=this.value">
+  </label>
+  {% endfor %}
+  <button type="submit">Dự đoán (Predict)</button>
+</form>
+<pre class="result" id="out">Kết quả (Result) hiện ở đây…</pre>
+</div>
+<script>
+async function predict(e) {
+  e.preventDefault();
+  const body = {};
+  {% for f in fields %}
+  body["{{ f.key }}"] = parseFloat(document.getElementById("n_{{ f.key }}").value);
+  {% endfor %}
+  const r = await fetch("/api/rice-classify", {
+    method: "POST", headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body)});
+  document.getElementById("out").textContent = JSON.stringify(await r.json(), null, 2);
+  return false;
+}
+</script>
+<div class="card">
+<h1>Phân loại hàng loạt từ CSV (Batch)</h1>
+<form method="post" action="/classify" enctype="multipart/form-data">
+  <input type="file" name="csv" accept=".csv">
+  <button type="submit">Tải lên &amp; phân loại (Upload &amp; classify)</button>
+</form>
+{% if batch_error %}<p class="err">{{ batch_error }}</p>{% endif %}
+{% if batch_rows %}
+<table class="data">
+  <tr><th>Kết quả (Result)</th><th>Cảnh báo (Warning)</th><th>Lỗi (Error)</th></tr>
+  {% for row in batch_rows %}
+  <tr><td>{{ row.result.variety if row.result else "" }}</td>
+      <td>{{ row.result.warning if row.result else "" }}</td>
+      <td>{{ row.error or "" }}</td></tr>
+  {% endfor %}
+</table>
+{% endif %}
+</div>
+{% endblock %}
