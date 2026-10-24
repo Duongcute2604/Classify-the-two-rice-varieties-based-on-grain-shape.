@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Đánh giá &amp; Model card (Dashboard){% endblock %}
+{% block content %}
+<div class="card">
+<h1>Kết quả trên tập kiểm thử (Test results, n = {{ rep.n_test }})</h1>
+<ul>
+  <li>Độ chính xác (Accuracy): {{ rep.acc }}</li>
+  <li>F1-score (F1): {{ rep.f1 }}</li>
+  <li>ROC-AUC: {{ rep.auc }}</li>
+</ul>
+<table class="data">
+  <tr><th></th><th>Đoán Cammeo</th><th>Đoán Osmancik</th></tr>
+  <tr><td><b>Thật Cammeo (245)</b></td><td>215 (87,8%)</td><td>30 (12,2%)</td></tr>
+  <tr><td><b>Thật Osmancik (327)</b></td><td>17 (5,2%)</td><td>310 (94,8%)</td></tr>
+</table>
+<p>Ma trận nhầm lẫn (Confusion matrix):</p>
+<img class="fig" src="/static/confusion_matrix.png" alt="Ma trận nhầm lẫn" width="480">
+</div>
+<div class="card">
+<h1>So sánh trên validation (Validation)</h1>
+<ul>
+  <li>Baseline lớp phổ biến (Majority): F1 = {{ met.baseline.val_f1 }}</li>
+  <li>Cây quyết định cắt tỉa (Pruned tree, ccp_alpha = {{ met.tree.ccp_alpha }}): F1 = {{ met.tree.val_f1 }}</li>
+  <li>Rừng ngẫu nhiên (Random forest): F1 = {{ met.forest.val_f1 }}</li>
+  <li>Mô hình thắng (Winner): {{ met.winner }}</li>
+</ul>
+<h2>Tầm quan trọng đặc trưng (Feature importance)</h2>
+<ul>
+{% for c, pct in met.importance.items() %}<li>{{ c }}: {{ pct }}%</li>{% endfor %}
+</ul>
+<h2>Vùng lỗi (Error regions)</h2>
+{% for feat, bins in rep.error_bins.items() %}
+<h3>{{ feat }}</h3>
+<ul>{% for b in bins %}<li>Nhóm {{ b.bin }}: {{ b.n_err }}/{{ b.n }} sai ({{ b.pct }}%)</li>{% endfor %}</ul>
+{% endfor %}
+<h2>Model card</h2>
+<p>Huấn luyện (Train): 2.667 mẫu + validation 571 mẫu, seed 42. Kiểm thử (Test): 572 mẫu độc lập,
+đánh giá 1 lần. Không thay thế kiểm nghiệm chính thức.</p>
+</div>
+{% endblock %}
